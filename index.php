@@ -15,9 +15,14 @@
 	<section id="header">
 	</section>
 	
-	<h1>NOME DO CLÃ</h1>
-	<h2>Entrada</h2>
-	<h2>Prato Principal</h2>
-	<h2>Sobremesa</h2>
+	<section id="cardapio">
+		<h1>NOME DO CLÃ</h1>
+		<h2>Entrada</h2>
+		<img class="cardapio-img" src="img/pureMandioquinha.png" alt="Purê de Mandioquinha com Molho Pesto">
+		<h2>Prato Principal</h2>
+		<img class="cardapio-img" src="img/fileMignon.png" alt="File Mignon com Manteiga de Ervas e Batata Rústica com aióli">
+		<h2>Sobremesa</h2>
+		<img class="cardapio-img" src="img/palhaitaliana.png" alt="Palha Italiana">
+	</section>
 </body>
 </html>
