@@ -3,26 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<link rel="shortcut icon" href="img/chapeu.ico" type="image/x-icon">
-	
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/index.css">
-	
-    <title>Cardápio TI-MASTERCHEF</title>
+    
+    <link rel="shortcut icon" href="img/chapeu.ico" type="image/x-icon">
+    
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/index.css">
+    
+    <title>Cardápio TI-MASTERDEV</title>
 </head>
 <body>
-	<section id="header">
-	</section>
-	
-	<section id="cardapio">
-		<h1>NOME DO CLÃ</h1>
-		<h2>Entrada</h2>
-		<img class="cardapio-img" src="img/pureMandioquinha.png" alt="Purê de Mandioquinha com Molho Pesto">
-		<h2>Prato Principal</h2>
-		<img class="cardapio-img" src="img/fileMignon.png" alt="File Mignon com Manteiga de Ervas e Batata Rústica com aióli">
-		<h2>Sobremesa</h2>
-		<img class="cardapio-img" src="img/palhaitaliana.png" alt="Palha Italiana">
-	</section>
+    <section class="container">
+        <?php include_once 'header.php'; ?>
+
+        <section class="slider">
+            <section class="slide active">
+                <section class="slideContent">
+                    <h2>CARDÁPIO 1</h2>
+                </section>
+            </section>
+
+            <section class="slide">
+                <section class="slideContent">
+                    <h2>CARDÁPIO 2</h2>
+                </section>
+            </section>
+
+            <section class="slide">
+                <section class="slideContent">
+                    <h2>CARDÁPIO 3</h2>
+                </section>
+            </section>
+        </section>
+    </section>
+
+        <section class="navigation">
+            <ul class="bullets">
+            </ul>
+            <section class="navButtons">
+                <button class="botaoseta prevButton"><img src="img/arrowL.png" alt="Seta Esquerda"></button>
+                <button class="botaoseta nextButton"><img src="img/arrowR.png" alt="Seta Direita"></button>
+            </section>
+        </section>
+    </section>
+
+
+
+    <script src="js/pratos.js"></script>
 </body>
 </html>
