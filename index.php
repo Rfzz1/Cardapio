@@ -19,19 +19,22 @@
         <section class="slider">
             <section class="slide active">
                 <section class="slideContent">
-                    <h2>CARDÁPIO 1</h2>
+                    <h2>PURÊ DE</h2>
+                    <h2>MANDIOQUINHA AO MOLHO PESTO</h2>
                 </section>
             </section>
 
             <section class="slide">
                 <section class="slideContent">
-                    <h2>CARDÁPIO 2</h2>
+                    <h2>FILÉ MIGNON</h2>
+                    <h2>NA MANTEIGA DE ERVAS E BATATAS RÚSTICAS COM AIÓLI</h2>
                 </section>
             </section>
 
             <section class="slide">
                 <section class="slideContent">
-                    <h2>CARDÁPIO 3</h2>
+                    <h2>BROWNIE</h2>
+                    <h2>DE CHOCOLATE</h2>
                 </section>
             </section>
         </section>
@@ -41,8 +44,8 @@
             <ul class="bullets">
             </ul>
             <section class="navButtons">
-                <button class="botaoseta prevButton"><img src="img/arrowL.png" alt="Seta Esquerda"></button>
-                <button class="botaoseta nextButton"><img src="img/arrowR.png" alt="Seta Direita"></button>
+                <button class="botaoseta prevButton"></button>
+                <button class="botaoseta nextButton"></button>
             </section>
         </section>
     </section>

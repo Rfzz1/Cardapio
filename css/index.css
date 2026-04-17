@@ -14,8 +14,10 @@
 
     .slide{
         width: 100%;
-        height: calc(100vh - 15%); /* compensa o padding */
-        background-image: url("../img/pureMandioquinha.png");
+        height: 100%;
+        background-image: 
+            linear-gradient(to right, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0) 70%),
+            url("../img/pureMandioquinha.png");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -25,6 +27,7 @@
         position: absolute;
         opacity: 0;
         transition: all .3s;
+        z-index:-1;
     }
 
     .slide.active {
@@ -33,11 +36,15 @@
     }
 
     .slide:nth-child(2){
-        background-image: url("../img/fileMignon.png");
+        background-image: 
+            linear-gradient(to right, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0) 70%),
+            url("../img/fileMignon.png");
     }
 
     .slide:nth-child(3){
-        background-image: url("../img/palhaitaliana.png");
+        background-image: 
+            linear-gradient(to right, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0) 70%),
+            url("../img/brownie.jpg");
     }
 
     .slideContent{
@@ -51,22 +58,22 @@
         width: 100%;
     }
 
-    /* Caso tiver mais um h2 embaixo */
-
-/*     .slideContent h2:nth-child(2){
-        font-size: 1.6vw;
+     .slideContent h2:nth-child(2){
+        font-size: 1.4vw;
         font-weight: 700;
+        text-align: right;
+        padding-right: 8px;
     }
- */
 
 .navigation{
     position: absolute;
-    bottom: 0%;
+    bottom: 40px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 0 4%;
     z-index: 10;
+    overflow: visible;
 }
 
     .bullets{
@@ -83,10 +90,15 @@
         background-color: white;
         border-radius: 200px;
         opacity: .5;
+        transition: all .3s;
     }
 
     .bullets li.active{
         opacity: 1;
+    }
+
+    .bullets li:hover:not(li.active){
+        opacity: .8;
     }
 
 .navButtons{
@@ -94,6 +106,8 @@
     gap: 2%;
     width: 50%;
     justify-content: end;
+    position: relative;
+    bottom: 30px;
 }
 
 .navButtons button img{
@@ -103,7 +117,39 @@
 }
 
 .botaoseta {
-    background: none;
+    background: rgba(0, 0, 0, 0.552);
     border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.botaoseta:hover {
+    background: rgba(0, 0, 0, 0.35);
+    transition: 0.2s;
+}
+
+/* seta base */
+.prevButton::before,
+.nextButton::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-top: 3px solid white;
+    border-right: 3px solid white;
+}
+
+/* direita → */
+.nextButton::before {
+    transform: rotate(45deg);
+}
+
+/* esquerda ← */
+.prevButton::before {
+    transform: rotate(-135deg);
+}
+
