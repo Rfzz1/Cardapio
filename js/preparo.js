@@ -2,19 +2,40 @@
 const pratos = [
     {
         titulo: "PURÊ DE MANDIOQUINHA AO MOLHO PESTO",
-        descricao: "Purê de mandioquinha com molho pesto...",
+        descricao: "Purê de batata baroa cremoso acompanhado de molho pesto fresco e aromático.",
+        tempo: "Tempo de preparo: 40 minutos",
+        porcoes: "Rende 4 porções",
         ingredientes: [
-            "500g de mandioquinha",
-            "2 colheres de manteiga"
+            "1kg de mandioquinha/batata baroa",
+            "3l de água",
+            "140g de manteiga em temperatura ambiente",
+            "200ml de leite de coco",
+            "1 ramo de alecrim",
+            "Sal a gosto",
+            "Pimenta branca a gosto",
+            "Pimenta do reino a gosto",
+            "Noz-moscada a gosto",
+            "1 xícara de folhas de manjericão fresco",
+            "1/4 xícara de castanhas de caju",
+            "1/4 xícara de azeite de oliva",
+            "3 dentes de alho"
         ],
-        preparo: "Cozinhe a mandioquinha...",
+        preparo: [
+            "1- Adicione a mandioquinha descascada e a água em uma panela grande. Cozinhe até que a mandioquinha esteja macia, cerca de 20-25 minutos. Enquanto isso, comece o preparo do molho pesto: pré-aqueça o forno em 200°C e asse as castanhas de caju e um confit de alho(alho e azeite) separados em uma assadeira até que estejam dourados e aromáticos. Reserve e deixe esfriar.",
+            "2 - Separe a água do cozimento da mandioquinha, reservando a água para ajustar a consistência do purê, se necessário. Amasse a mandioquinha com um amassador de batatas ou um garfo, enquanto isso deixe o leite de coco fervendo em fogo baixo com o sal, a pimenta, a noz-moscada e um ramo de alecrim.",
+            "3 - Quando todas as batatas estiverem amassadas, adicione metade da manteiga cortada em cubos e misture bem. Em seguida, adicione o leite de coco quente aos poucos, mexendo constantemente, até obter a consistência desejada. Alterne entre a manteiga e o leite de coco. Se o purê estiver muito grosso, adicione um pouco da água do cozimento reservada para ajustar a textura conforme o desejo.",
+            "4 - Molho pesto: Em um processador de alimentos/pilão/liquidificador, combine as folhas de manjericão fresco, as castanhas de caju assadas, o confit de alho, o sal e a pimenta do reino a gosto. Processe até obter um molho homogêneo. Se necessário, adicione um pouco mais de azeite para alcançar a consistência desejada.",
+            "5 - Sirva o purê de mandioquinha em um prato, regado com o molho pesto por cima. Decore com folhas de manjericão fresco e, se desejar, um fio de azeite de oliva extra virgem. Aproveite!"
+        ],
         imagem: "img/pureMandioquinha.png"
     },
     {
         titulo: "FILÉ MIGNON NA MANTEIGA DE ERVAS COM BATATAS RÚSTICAS E AIÓLI",
-        descricao: "Filé suculento...",
+        descricao: "Medalhão de filé mignon suculento, grelhado e servido com uma manteiga de ervas aromática, acompanhado de batatas rústicas crocantes e um aioli cremoso.",
+        tempo: "Tempo de preparo: 40 minutos",
+        porcoes: "Rende 4 porções",
         ingredientes: [
-            "Carne",
+            "1.5Kg de filé mignon",
             "Alho"
         ],
         preparo: "Grelhe o filé...",
@@ -23,6 +44,8 @@ const pratos = [
     {
         titulo: "BROWNIE DE CHOCOLATE",
         descricao: "Filé suculento...",
+        tempo: "Tempo de preparo: 40 minutos",
+        porcoes: "Rende 4 porções",
         ingredientes: [
             "Carne",
             "Alho"
@@ -58,9 +81,26 @@ function renderSlide(index) {
 console.log(prato.imagem);
     document.querySelector('.titulo').textContent = prato.titulo;
     trocarFundo(prato.imagem);
-    document.querySelector('.titulo').textContent = prato.titulo;
     document.querySelector('.descricao').textContent = prato.descricao;
-    document.querySelector('.preparo').textContent = prato.preparo;
+    document.querySelector('.tempo').textContent = prato.tempo;
+    document.querySelector('.porcoes').textContent = prato.porcoes;
+    const preparoContainer = document.querySelector('.preparo');
+    preparoContainer.innerHTML = "";
+
+    // se for array
+    if (Array.isArray(prato.preparo)) {
+        prato.preparo.forEach(passo => {
+            const li = document.createElement("li");
+            li.textContent = passo;
+            preparoContainer.appendChild(li);
+        });
+    } 
+    // se for string (fallback)
+    else {
+        const li = document.createElement("li");
+        li.textContent = prato.preparo;
+        preparoContainer.appendChild(li);
+    }
 
     const lista = document.querySelector('.ingredientes');
     lista.innerHTML = "";

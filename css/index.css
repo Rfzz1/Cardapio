@@ -95,6 +95,7 @@
 
     .bullets li.active{
         opacity: 1;
+        width: 40px; /* Bullet ativo fica um pouco maior */
     }
 
     .bullets li:hover:not(li.active){

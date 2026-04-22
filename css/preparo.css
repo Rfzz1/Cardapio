@@ -3,83 +3,59 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
+    padding: 20px; /* Evita que o card cole nas bordas da tela */
+    box-sizing: border-box;
 }
 .fundo {
-    position: fixed;
+position: fixed;
     inset: 0;
-
     background-size: cover;
     background-position: center;
-
     transform: scale(1);
     transition: transform 2s linear;
-
     z-index: 0;
 }
 
 .fundo.zoom {
-    transform: scale(1.1); /* aumenta 20% */
+    transform: scale(1.1);
 }
 
-
-    .fundo::after {
+.fundo::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.5);
 }
 
 .slider {
-  width: 50%;
-  height: 100vh;
-background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(9px);
-  -webkit-backdrop-filter: blur(9px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 0px 0px rgba(255, 255, 255, 0);
-  position: relative;
-  overflow: hidden;
+    width: 100%;
+    max-width: 900px; /* Limita o crescimento em telas gigantes */
+    height: 85vh; /* Dá um aspecto de card flutuante */
+    background: rgba(20, 20, 20, 0.35); /* Fundo um pouco mais escuro para contraste */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .slider::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.8),
-    transparent
-  );
-}
-
-.slider::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.8),
-    transparent,
-    rgba(255, 255, 255, 0.3)
-  );
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
 }
 
 .slide {
     height: 100%;
+    width: 100%;
 }
 
 .slide.active {
@@ -88,104 +64,218 @@ background: rgba(255, 255, 255, 0.12);
 }
 
 .slideContent {
-    display: flex;
+    height: 100%;
+    box-sizing: border-box;
+    flex-grow: 1;
+    overflow-y: auto; /* Permite rolar se a receita for grande */
+    padding: 60px 40px 100px 40px; /* Padding extra embaixo por causa dos botões */
+    display: block;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 20px;
-    border-radius: 10px;
+    justify-content: flex-start;
+    padding-bottom: 100px;
+}
+
+/* Largura da barra de rolagem */
+.slideContent::-webkit-scrollbar { 
+    width: 8px; 
+}
+
+/* O fundo por onde a barra desliza */
+.slideContent::-webkit-scrollbar-track { 
+    background: transparent; 
+}
+
+/* A barrinha em si */
+.slideContent::-webkit-scrollbar-thumb { 
+    background: rgba(255, 255, 255, 0.3); /* Branco translúcido */
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+/* Quando o mouse passa por cima da barrinha */
+.slideContent::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5); 
 }
 
 .slideContent h1 {
     color: #fff;
-    font-size: 2vw;
-    margin: 10px 0;
+    /* clamp garante um tamanho mínimo, fluidez e tamanho máximo */
+    font-size: clamp(1.8rem, 3vw, 2.5rem); 
+    font-weight: 800;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* Sombra para melhorar leitura */
+    margin-bottom: 10px;
+    width: 100%;
 }
 
-.navigation{
-    position: absolute;
-    bottom: 40px;
+.descricao {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 400;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.slideContent h3 {
+    color: #fff;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 700;
+    text-align: center;
+    margin: 20px 0 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 5px;
     width: 100%;
+}
+
+.slideContent ul {
+    color: #fff;
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    text-align: left;
+    columns: 2; /* Mantém as duas colunas */
+    column-gap: 40px; /* Mais espaço entre as colunas */
+    width: 100%;
+    line-height: 1.5;
+}
+
+.slideContent ul li {
+    break-inside: avoid;
+    margin-bottom: 8px;
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.tempo {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    font-weight: 400;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.porcoes {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    font-weight: 400;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.preparo {
+    color: #fff;
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    text-align: left;
+    width: 100%;
+    line-height: 1.6;
+    /* Removido o 'decimal' pois seu JS já traz "1- ", "2- " no texto, evitando dupla numeração */
+    list-style: none; 
+    padding-left: 0;
+}
+
+.preparo li {
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.2); /* Cria blocos sutis para separar os passos */
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* =========================================
+   NAVEGAÇÃO (BOTÕES E BULLETS)
+   ========================================= */
+.navigation {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); /* Gradiente para destacar os botões */
     display: flex;
     justify-content: space-between;
-    padding: 0 4%;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
     z-index: 10;
-    overflow: visible;
 }
 
-    .bullets{
-        display: flex;
-        gap:1.2%;
-        width: 50%;
-    }
-
-    .bullets li{
-        list-style-type: none;
-        content: "";
-        width: 1.4vw;
-        height: .3vw;
-        background-color: white;
-        border-radius: 200px;
-        opacity: .5;
-        transition: all .3s;
-    }
-
-    .bullets li.active{
-        opacity: 1;
-    }
-
-    .bullets li:hover:not(li.active){
-        opacity: .8;
-    }
-
-.navButtons{
+.bullets {
     display: flex;
-    gap: 2%;
-    width: 50%;
-    justify-content: end;
-    position: relative;
-    bottom: 30px;
+    gap: 10px;
 }
 
-.navButtons button img{
-    width: 3vw;
-    height: auto;
-    padding-bottom: 20%;
+.bullets li {
+    list-style-type: none;
+    width: 30px;
+    height: 5px;
+    background-color: white;
+    border-radius: 10px;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.bullets li.active {
+    opacity: 1;
+    background-color: #fff;
+    width: 40px; /* Bullet ativo fica um pouco maior */
+}
+
+.bullets li:hover:not(.active) {
+    opacity: 0.8;
+}
+
+.navButtons {
+    display: flex;
+    gap: 15px;
 }
 
 .botaoseta {
-    background: rgba(0, 0, 0, 0.552);
-    border: none;
-    width: 50px;
-    height: 50px;
+    background: rgba(255, 255, 255, 0.15); /* Mais elegante */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
 }
 
 .botaoseta:hover {
-    background: rgba(0, 0, 0, 0.35);
-    transition: 0.2s;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
 }
 
-/* seta base */
 .prevButton::before,
 .nextButton::before {
     content: "";
-    width: 12px;
-    height: 12px;
-    border-top: 3px solid white;
-    border-right: 3px solid white;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
 }
 
-/* direita → */
-.nextButton::before {
-    transform: rotate(45deg);
-}
+.nextButton::before { transform: rotate(45deg); margin-right: 4px; }
+.prevButton::before { transform: rotate(-135deg); margin-left: 4px; }
 
-/* esquerda ← */
-.prevButton::before {
-    transform: rotate(-135deg);
+/* =========================================
+   RESPONSIVIDADE (MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+    .slideContent ul {
+        columns: 1; /* Transforma em 1 coluna no celular */
+    }
+    
+    .navigation {
+        padding: 0 20px;
+    }
+    
+    .slideContent {
+        padding: 30px 20px 90px 20px;
+    }
 }

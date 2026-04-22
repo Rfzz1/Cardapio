@@ -25,12 +25,14 @@
             <section class="slideContent">
                 <h1 class="titulo"></h1>
                 <p class="descricao"></p>
+                <p class="tempo"></p>
+                <p class="porcoes"></p>
 
-                <h3>Ingredientes</h3>
+                <h3 class="">INGREDIENTES</h3>
                 <ul class="ingredientes"></ul>
 
-                <h3>Modo de preparo</h3>
-                <p class="preparo"></p>
+                <h3>MODO DE PREPARO</h3>
+                <ol class="preparo"></ol>
             </section>
         </section>
 
