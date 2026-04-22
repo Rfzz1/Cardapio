@@ -65,92 +65,83 @@
         padding-right: 8px;
     }
 
-.navigation{
+/* =========================================
+   NAVEGAÇÃO (BOTÕES E BULLETS)
+   ========================================= */
+.navigation {
     position: absolute;
-    bottom: 40px;
+    bottom: 0;
+    left: 0;
     width: 100%;
+    height: 80px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); /* Gradiente para destacar os botões */
     display: flex;
     justify-content: space-between;
-    padding: 0 4%;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
     z-index: 10;
-    overflow: visible;
 }
 
-    .bullets{
-        display: flex;
-        gap:1.2%;
-        width: 50%;
-    }
-
-    .bullets li{
-        list-style-type: none;
-        content: "";
-        width: 1.4vw;
-        height: .3vw;
-        background-color: white;
-        border-radius: 200px;
-        opacity: .5;
-        transition: all .3s;
-    }
-
-    .bullets li.active{
-        opacity: 1;
-        width: 40px; /* Bullet ativo fica um pouco maior */
-    }
-
-    .bullets li:hover:not(li.active){
-        opacity: .8;
-    }
-
-.navButtons{
+.bullets {
     display: flex;
-    gap: 2%;
-    width: 50%;
-    justify-content: end;
-    position: relative;
-    bottom: 30px;
+    gap: 10px;
 }
 
-.navButtons button img{
-    width: 3vw;
-    height: auto;
-    padding-bottom: 20%;
+.bullets li {
+    list-style-type: none;
+    width: 30px;
+    height: 5px;
+    background-color: white;
+    border-radius: 10px;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.bullets li.active {
+    opacity: 1;
+    background-color: #fff;
+    width: 40px; /* Bullet ativo fica um pouco maior */
+}
+
+.bullets li:hover:not(.active) {
+    opacity: 0.8;
+}
+
+.navButtons {
+    display: flex;
+    gap: 15px;
 }
 
 .botaoseta {
-    background: rgba(0, 0, 0, 0.552);
-    border: none;
-    width: 50px;
-    height: 50px;
+    background: rgba(255, 255, 255, 0.15); /* Mais elegante */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
 }
 
 .botaoseta:hover {
-    background: rgba(0, 0, 0, 0.35);
-    transition: 0.2s;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
 }
 
-/* seta base */
 .prevButton::before,
 .nextButton::before {
     content: "";
-    width: 12px;
-    height: 12px;
-    border-top: 3px solid white;
-    border-right: 3px solid white;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
 }
 
-/* direita → */
-.nextButton::before {
-    transform: rotate(45deg);
-}
-
-/* esquerda ← */
-.prevButton::before {
-    transform: rotate(-135deg);
-}
+.nextButton::before { transform: rotate(45deg); margin-right: 4px; }
+.prevButton::before { transform: rotate(-135deg); margin-left: 4px; }
 
