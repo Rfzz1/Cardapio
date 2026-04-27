@@ -1,15 +1,26 @@
 #header {
     display: flex;
     justify-content: flex-end;
-    position:absolute;
+    position: absolute;
     width: 100%;
-    gap: 2rem;
-    padding: 2.5rem 5rem;
+    padding: 2.5rem 2.5rem;
     z-index: 999;
+}
+
+/* Menu em linha */
+.menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.menu li {
+    position: relative;
 }
 
 .botaoMenu {
     background: none;
+    border: none;
     color: rgb(255, 255, 255);
     font-weight: 700;
     padding: 0.625rem 1.25rem;
@@ -39,3 +50,115 @@
       width: 100%;
       filter: brightness(1.5);
     }
+    
+.nav-menu {
+    position: relative;
+    top: 0;
+    right: 0;
+    /* FUNDO DO DROPDOWN + BORDA */
+    background: rgba(20, 20, 20, 0.35); /* Fundo um pouco mais escuro para contraste */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    /* POSICIONAMENTO E TRANSIÇÃO */
+    padding: 0.5rem 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: 0.3s;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.nav-menu li a {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+    text-align: left;
+}
+.nav-menu li a:hover {
+    background: #333;
+}
+
+.dropdown:hover .nav-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+/* botão hamburguer escondido no desktop */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+
+    #header {
+        padding: 1.5rem;
+        justify-content: space-between;
+    }
+
+    /* mostra botão */
+    .menu-toggle {
+        display: block;
+        z-index: 1001;
+    }
+
+    /* menu vira painel */
+    .menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 100px 20px;
+        gap: 1rem;
+
+        background: rgba(20, 20, 20, 0.6);
+        backdrop-filter: blur(12px);
+
+        transition: 0.3s;
+    }
+
+    /* menu aberto */
+    .menu.active {
+        right: 0;
+    }
+
+    /* botões ocupam largura toda */
+    .botaoMenu {
+        width: 100%;
+        text-align: left;
+    }
+
+    /* dropdown mobile */
+    .nav-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background: none;
+        border: none;
+        box-shadow: none;
+        padding-left: 15px;
+        display: none;
+    }
+
+    .dropdown.active .nav-menu {
+        display: block;
+    }
+}
