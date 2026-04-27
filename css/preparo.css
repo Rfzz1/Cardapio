@@ -33,9 +33,9 @@ position: fixed;
     width: 100%;
     max-width: 900px; /* Limita o crescimento em telas gigantes */
     height: 85vh; /* Dá um aspecto de card flutuante */
-    background: rgba(20, 20, 20, 0.35); /* Fundo um pouco mais escuro para contraste */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
@@ -103,7 +103,7 @@ position: fixed;
     font-size: clamp(1.8rem, 3vw, 2.5rem); 
     font-weight: 800;
     text-align: center;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* Sombra para melhorar leitura */
+    text-shadow: 0 0 2px rgba(0,0,0,0.8);
     margin-bottom: 10px;
     width: 100%;
 }
