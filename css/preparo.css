@@ -9,10 +9,11 @@
     box-sizing: border-box;
 }
 .fundo {
-position: fixed;
+    position: fixed;
     inset: 0;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     transform: scale(1);
     transition: transform 2s linear;
     z-index: 0;
@@ -26,31 +27,40 @@ position: fixed;
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.35);
 }
 
 .slider {
     width: 100%;
     max-width: 900px; /* Limita o crescimento em telas gigantes */
     height: 85vh; /* Dá um aspecto de card flutuante */
-    background: rgba(20, 20, 20, 0.6);
+    background: transparent;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     display: flex;
     flex-direction: column;
 }
 
 .slider::before {
-    content: '';
+    content: "";
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    inset: 0;
+
+    background: rgba(20, 20, 20, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+
+    z-index: 0;
 }
 
 .slide {
@@ -74,6 +84,8 @@ position: fixed;
     align-items: center;
     justify-content: flex-start;
     padding-bottom: 100px;
+    z-index:1;
+    position:relative;
 }
 
 /* Largura da barra de rolagem */
