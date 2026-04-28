@@ -112,29 +112,25 @@ const arrayBullets = document.querySelectorAll('.bullets li');
 arrayBullets[0].classList.add("active");
 
 // função principal
-function renderSlide(index) {
+function renderSlide(index, primeiroLoad = false) {
     const prato = pratos[index];
 
-    
-console.log(prato.imagem);
     document.querySelector('.titulo').textContent = prato.titulo;
-    trocarFundo(prato.imagem);
+    trocarFundo(prato.imagem, primeiroLoad ? 300 : 0); // só uma chamada
     document.querySelector('.descricao').textContent = prato.descricao;
     document.querySelector('.tempo').textContent = prato.tempo;
     document.querySelector('.porcoes').textContent = prato.porcoes;
+
     const preparoContainer = document.querySelector('.preparo');
     preparoContainer.innerHTML = "";
 
-    // se for array
     if (Array.isArray(prato.preparo)) {
         prato.preparo.forEach(passo => {
             const li = document.createElement("li");
             li.textContent = passo;
             preparoContainer.appendChild(li);
         });
-    } 
-    // se for string (fallback)
-    else {
+    } else {
         const li = document.createElement("li");
         li.textContent = prato.preparo;
         preparoContainer.appendChild(li);
@@ -149,38 +145,37 @@ console.log(prato.imagem);
         lista.appendChild(li);
     });
 
-    // bullets
     let activeBullet = document.querySelector('.bullets li.active');
     if (activeBullet) activeBullet.classList.remove("active");
-
     arrayBullets[index].classList.add("active");
 }
 
-function trocarFundo(imagem) {
+function trocarFundo(imagem, delay = 0) {
     const fundo = document.querySelector('.fundo');
 
-    // troca imagem
-    fundo.style.backgroundImage = `url("${imagem}")`;
-
-    // reset total
     fundo.style.transition = "none";
     fundo.style.transform = "scale(1)";
+    fundo.style.backgroundImage = `url("${imagem}")`;
 
-    // força o reset
-    void fundo.offsetWidth;
-
-    // anima de novo
-    fundo.style.transition = "transform 4s ease";
-    fundo.style.transform = "scale(1.1)";
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                fundo.style.transition = "transform 4s ease";
+                fundo.style.transform = "scale(1.1)";
+            }, delay);
+        });
+    });
 }
 
-// iniciar
-renderSlide(index);
+// iniciar — passa true só no primeiro load
+window.addEventListener('load', () => {
+    renderSlide(index, true);
+});
 
 // eventos
 nextButton.onclick = () => {
     index = (index + 1) % pratos.length;
-    renderSlide(index);
+    renderSlide(index); // primeiroLoad fica false por padrão
 };
 
 prevButton.onclick = () => {
@@ -188,12 +183,9 @@ prevButton.onclick = () => {
     renderSlide(index);
 };
 
-// bullets click
 arrayBullets.forEach((bullet, bulletIndex) => {
     bullet.onclick = () => {
         index = bulletIndex;
         renderSlide(index);
     }
 });
-const fundo = document.querySelector('.fundo');
-console.log(fundo);
